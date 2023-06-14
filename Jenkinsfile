@@ -31,8 +31,9 @@ pipeline {
                         // withCredentials([file(credentialsId: 'slave-kubeconfige', variable: 'KUBECONFIG_To_Slave')]) {
                         sh '''
                             echo ${PWD}
-                            kubectl apply -f /home/ec2-user/workspace/backend/LoadBalancer.yaml
-                            kubectl apply -f /home/ec2-user/workspace/backend/deployment.yaml
+                            
+                            kubectl apply -f ${PWD}/LoadBalancer.yaml
+                            kubectl apply -f ${PWD}/deployment.yaml
                             
                             # export BUILD_NUMBER=$(cat ../build.txt)
                             # mv Deployment/deploy.yaml Deployment/deploy.yaml.tmp
