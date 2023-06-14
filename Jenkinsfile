@@ -30,6 +30,7 @@ pipeline {
                     if (params.ENV == "dev" || params.ENV == "test" || params.ENV == "prod") {
                         // withCredentials([file(credentialsId: 'slave-kubeconfige', variable: 'KUBECONFIG_To_Slave')]) {
                         sh '''
+                            echo ${PWD}
                             kubectl apply -f /home/ec2-user/workspace/backend/LoadBalancer.yaml
                             kubectl apply -f /home/ec2-user/workspace/backend/deployment.yaml
                             
