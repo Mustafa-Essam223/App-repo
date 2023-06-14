@@ -9,7 +9,7 @@ metadata:
 spec:
   selector:
     app: backendApp
-  type: LoadBalancer
+  type: loadbalancer
   ports:
     - protocol: TCP
       port: 80
