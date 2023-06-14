@@ -4,19 +4,19 @@ metadata:
   name: backend-application
   namespace: backend-namespace
   labels:
-    app: backendApp
+    app: backendapp
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: backendApp
+      app: backendapp
   template:
     metadata:
       labels:
-        app: backendApp
+        app: backendapp
     spec:
       containers:
-        - name: myAPP
+        - name: myapp
           image: mustafaessam/backendsimpleapp:v55
           ports:
             - containerPort: 3000
