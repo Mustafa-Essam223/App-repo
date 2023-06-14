@@ -9,9 +9,9 @@ pipeline {
                 echo 'build'
                 script{
                     if (params.ENV == "release") {
-                        withCredentials([usernamePassword(credentialsId: 'DockerHub-Account', usernameVariable: 'MustafaEssam', passwordVariable: 'DockerHub123456')]) {
+                        withCredentials([usernamePassword(credentialsId: 'DockerHub-Account', usernameVariable: 'USERNAME', passwordVariable: 'Passw')]) {
                             sh '''
-                                docker login -u ${MustafaEssam} -p ${DockerHub123456}
+                                docker login -u ${USERNAME} -p ${Passw}
                                 docker build -t mustafaessam/backendsimpleapp:v55 Dockerfile
                                 docker push mustafaessam/backendsimpleapp:v55
                                 echo ${BUILD_NUMBER} > ../build.txt
