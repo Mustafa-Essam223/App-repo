@@ -29,13 +29,18 @@ pipeline {
                 echo 'deploy'
                 script {
                     if (params.ENV == "dev" || params.ENV == "test" || params.ENV == "prod") {
-                        withCredentials([file(credentialsId: 'slave-kubeconfige', variable: 'KUBECONFIG_To_Slave')]) {
+                        # withCredentials([file(credentialsId: 'slave-kubeconfige', variable: 'KUBECONFIG_To_Slave')])
+                        
+                        {
                             sh '''
-                                export BUILD_NUMBER=$(cat ../build.txt)
-                                mv Deployment/deploy.yaml Deployment/deploy.yaml.tmp
-                                cat Deployment/deploy.yaml.tmp | envsubst > Deployment/deploy.yaml
-                                rm -f Deployment/deploy.yaml.tmp
-                                kubectl apply -f Deployment --kubeconfig ${KUBECONFIG_To_Slave} -n ${ENV}
+                            kubectl apply -f /home/ec2-user/workspace/backend/LoadBalancer.yaml
+                            kubectl apply -f /home/ec2-user/workspace/backend/deployment.yaml
+                            
+                                #    export BUILD_NUMBER=$(cat ../build.txt)
+                                #   mv Deployment/deploy.yaml Deployment/deploy.yaml.tmp
+                                #  cat Deployment/deploy.yaml.tmp | envsubst > Deployment/deploy.yaml
+                                #  rm -f Deployment/deploy.yaml.tmp
+                                # kubectl apply -f Deployment --kubeconfig ${KUBECONFIG_To_Slave} -n ${ENV}
                             '''
                         }
                     }
